@@ -13,6 +13,8 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "crimson";
 ---
 
 <html lang="en">
@@ -23,6 +25,16 @@ const goal = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+        <style define:vars={{skillColor}}>
+            h1 {
+                color: purple;
+                font-size: 4rem;
+            }
+            .skill {
+                color: var(--skillColor);
+                font-weight: bold;
+            }
+        </style>
 	</head>
 	<body>
         <a href="/">Home</a>
@@ -38,15 +50,7 @@ const goal = 3;
         <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
         <p>Here are a few facts about me:</p>
         <ul>
-            <li>My name is {identity.firstName}.</li>
-            <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-            {identity.hobbies.length >= 2 &&
-                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
-            }
-        </ul>
-        <p>My skills are:</p>
-        <ul>
-            {skills.map((skill) => <li>{skill}</li>)}
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
         </ul>
 
         {happy && <p>I am happy to be learning Astro!</p>}
